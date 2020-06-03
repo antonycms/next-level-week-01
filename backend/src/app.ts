@@ -3,8 +3,6 @@ config();
 import express, { Express } from 'express';
 import routes from './routes';
 
-import './database/index';
-
 class App {
   server: Express;
   constructor() {
