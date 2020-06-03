@@ -1,18 +1,12 @@
-import knex, { ConnectionConfigProvider } from 'knex';
-import dbConfig from '../config/database';
+import knex from 'knex';
+import path from 'path';
 
-class Database {
-  static connection: ConnectionConfigProvider;
+const connection = knex({
+  client: 'sqlite3',
+  connection: {
+    filename: path.resolve(__dirname, 'database.sqlite'),
+  },
+  useNullAsDefault: true,
+});
 
-  constructor() {
-    Database.init();
-  }
-
-  private static init() {
-    if (!Database.connection) {
-      Database.connection = knex(dbConfig);
-    }
-  }
-}
-
-export default new Database();
+export default connection;

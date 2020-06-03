@@ -9,6 +9,9 @@ const configDb = {
   migrations: {
     directory: resolve(__dirname, 'src', 'database', 'migrations'),
   },
+  seeds: {
+    directory: resolve(__dirname, 'src', 'database', 'seeds'),
+  },
   useNullAsDefault: true,
 } as Config;
 
