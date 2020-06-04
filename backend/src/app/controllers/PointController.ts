@@ -1,5 +1,6 @@
 import knex from '../../database';
-import { IPoint, IResponseError } from '../requestSchemas';
+import { Transaction } from 'knex';
+import { IPoint } from '../requestSchemas';
 import { Request, Response } from 'express';
 
 interface IPointItems {
@@ -9,16 +10,17 @@ interface IPointItems {
 
 class PointController {
   async index(req: Request, res: Response) {
-    const { id } = req.params;
-    let points: IPoint[] | IPoint;
-
-    if (id) {
-      points = await knex('points').select('*').where('id', id);
-    } else {
-      points = await knex('points').select('*');
-    }
+    const points: IPoint[] = await knex('points').select('*');
 
     return res.json(points);
+  }
+
+  async show(req: Request, res: Response) {
+    const { id } = req.params;
+
+    const [point]: IPoint[] = await knex('points').select('*').where('id', id);
+
+    return res.json(point);
   }
 
   async store(req: Request, res: Response) {
@@ -27,32 +29,30 @@ class PointController {
     const pointData = data.point;
     const items = data.items;
 
-    try {
-      const trx = await knex.transaction();
+    let trx: Transaction;
 
-      const [point]: IPoint[] = await trx('points').insert(pointData);
+    try {
+      trx = await knex.transaction();
+      const [id_point]: number[] = await trx('points').insert(pointData);
 
       if (items && items.length) {
         const pointItems = items.map((id_item) => ({
           id_item,
-          id_point: point.id,
+          id_point,
         }));
 
         await trx('point_items').insert(pointItems);
       }
 
+      await trx.commit();
+
       return res.send();
-    } catch (err) {
-      const responseError: IResponseError = {
-        error: {
-          details: err.message,
-          message: 'Internal Server Error',
-        },
-      };
+    } catch (error) {
+      if (trx) await trx.commit();
+      const responseError = { details: error.message, message: 'Internal Server Error' };
 
       return res.status(500).json(responseError);
     }
-    //
   }
 }
 

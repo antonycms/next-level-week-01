@@ -29,4 +29,13 @@ interface IResponseError {
   };
 }
 
-export { IPoint, IPointItems, IItem, IResponseError };
+function createResponseError({ message, details }: { message: string; details: string }) {
+  return {
+    error: {
+      details: message,
+      message: details,
+    },
+  } as IResponseError;
+}
+
+export { IPoint, IPointItems, IItem, IResponseError, createResponseError };
