@@ -14,6 +14,7 @@ interface IItem {
   id?: number;
   image: string;
   title: string;
+  url?: string;
 }
 
 interface IPointItems {

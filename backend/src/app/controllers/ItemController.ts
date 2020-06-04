@@ -5,8 +5,14 @@ import { Request, Response } from 'express';
 class ItemController {
   async index(req: Request, res: Response) {
     const items: IItem[] = await knex('items').select('*');
+    const { HOST, PORT } = process.env;
 
-    return res.json(items);
+    const itemsSerialized = items.map((item) => ({
+      ...item,
+      url: `http://${HOST}:${PORT}/uploads/${item.image}`,
+    }));
+
+    return res.json(itemsSerialized);
   }
 
   async show(req: Request, res: Response) {
