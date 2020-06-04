@@ -1,5 +1,8 @@
 {
   "name": "backend",
+  "engines": {
+    "node": "12.17.0"
+  },
   "version": "1.0.0",
   "description": "Projeto realizado no evento next-level-week da Rocketseat",
   "main": "./dist/server.js",
