@@ -23,9 +23,12 @@
 - npm >= v6.14.4
 - node >=v12.17.0
 
+## Project Directories
+ -  `backend` (aplication server)
+ -  `frontend` (web aplication)
+ -  `mobile` (mobile aplication)
 
-## Author
-
+#
 👤 **Antony Santos**
 
 * Github: [@antonycms](https://github.com/antonycms)
