@@ -30,13 +30,14 @@
 
 #create-container form {
   margin-top: 60px;
-  width: 70%;
+  width: 60%;
   background-color: white;
   border-radius: 8px;
   padding: 3%;
 }
 
 #create-container form fieldset {
+  min-width: auto;
   margin-top: 30px;
   display: flex;
   border: 0;
@@ -105,4 +106,35 @@
 }
 .col-2 {
   width: 20%;
+}
+
+@media (max-width: 900px) {
+  #create-container form {
+    width: 80%;
+  }
+}
+
+@media (max-width: 700px) {
+  #create-container form {
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  #create-container form {
+    width: 100%;
+  }
+
+  #create-container {
+    padding: 5%;
+  }
+
+  #create-container header {
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  #create-container header a { 
+    margin-top: 20px;
+  }
 }
