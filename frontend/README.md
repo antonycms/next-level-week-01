@@ -25,7 +25,7 @@
 - npm >=6.14.4
 - node >=12.17.0
 
-## Tecnologies
+## Technologies
 - React
 - Axios
 - Leaflet
