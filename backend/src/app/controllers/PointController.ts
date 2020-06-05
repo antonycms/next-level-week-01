@@ -1,6 +1,6 @@
 import knex from '../../database';
 import { Transaction } from 'knex';
-import { IPoint } from '../requestSchemas';
+import { IPoint, IItem } from '../requestSchemas';
 import { Request, Response } from 'express';
 
 interface IPointItems {
@@ -10,7 +10,19 @@ interface IPointItems {
 
 class PointController {
   async index(req: Request, res: Response) {
-    const points: IPoint[] = await knex('points').select('*');
+    const { uf, city, items } = req.query;
+
+    const parsedItems = String(items)
+      .split(',')
+      .map((item) => item.trim());
+
+    const points: IPoint[] = await knex('points')
+      .join('point_items', 'id_point', '=', 'points.id')
+      .whereIn('point_items.id_item', parsedItems)
+      .where('city', String(city))
+      .where('uf', String(uf))
+      .distinct()
+      .select('points.*');
 
     return res.json(points);
   }
@@ -18,16 +30,24 @@ class PointController {
   async show(req: Request, res: Response) {
     const { id } = req.params;
 
-    const [point]: IPoint[] = await knex('points').select('*').where('id', id);
+    const point: IPoint = await knex('points').select('*').where('id', id).first();
 
-    return res.json(point);
+    if (!point) {
+      return res.status(404).json({ message: 'Point not found' });
+    }
+
+    const items: IItem[] = await knex('items')
+      .join('point_items', 'items.id', '=', 'point_items.id_item')
+      .where('point_items.id_point', id)
+      .select('title');
+
+    return res.json({ point, items });
   }
 
   async store(req: Request, res: Response) {
     const data: IPointItems = req.body;
 
-    const pointData = data.point;
-    const items = data.items;
+    const { point: pointData, items } = data;
 
     let trx: Transaction;
 

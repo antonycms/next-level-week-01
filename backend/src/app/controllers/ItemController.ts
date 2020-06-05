@@ -18,7 +18,7 @@ class ItemController {
   async show(req: Request, res: Response) {
     const { id } = req.params;
 
-    const [item] = await knex('items').select('*').where('id', id);
+    const item: IItem = await knex('items').select('*').where('id', id).first();
 
     return res.json(item);
   }

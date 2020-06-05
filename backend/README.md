@@ -1,4 +1,4 @@
-<h1 align="center">NextLevelWeek</h1>
+<h1 align="center">Next Level Week - Backend👋</h1>
 
 <div align="center">
   <img style="border-radius: 8px;" src="../assets/nlw-logo.png"/>
