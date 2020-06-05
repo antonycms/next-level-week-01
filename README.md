@@ -1,9 +1,8 @@
 <h1 align="center">NextLevelWeek</h1>
 
-<div style="widht: 100%; display: flex; justify-content: center;">
-<img style="border-radius: 8px;" src="./assets/nlw-logo.png"/>
+<div align="center">
+  <img style="border-radius: 8px;" src="./assets/nlw-logo.png"/>
 </div>
-
 
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
