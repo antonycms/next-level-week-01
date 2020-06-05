@@ -1,12 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState, ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Map, TileLayer } from 'react-leaflet';
+
+import { getMunicipios, getUFs } from '../../services/IBGEApi';
+import { baseAPI } from '../../services/appApi';
+
+import { IItem } from '../../schemas/appApi.schema';
+import { IUF, IMunicipio } from '../../schemas/IBGE.schema';
 
 import './styles.css';
 import logo from '../../assets/logo.svg';
 
 const CreatePoint: React.FC = () => {
+  const [items, setItems] = useState<IItem[]>([]);
+  const [municipios, setMunicipios] = useState<IMunicipio[]>([]);
+  const [ufs, setUfs] = useState<IUF[]>([]);
+
+  useEffect(() => {
+    getUFs().then((ufs) => setUfs(ufs));
+  }, []);
+
+  useEffect(() => {
+    baseAPI.get('items').then((response) => {
+      const items: IItem[] = response.data;
+
+      setItems(items);
+    });
+  }, []);
+
+  async function handleSelectUF(event: ChangeEvent<HTMLSelectElement>) {
+    const sigla = event.target.value;
+    if (!sigla) return;
+
+    setMunicipios(await getMunicipios(sigla));
+  }
+
   return (
     <div id="create-container">
       <header>
@@ -55,15 +84,27 @@ const CreatePoint: React.FC = () => {
           <div className="col-container">
             <div className="col col-4">
               <label htmlFor="name">Estado (UF)</label>
-              <select name="" id="">
-                <option value="0">Selecione o Estado (UF)</option>
+              <select defaultValue="0" onChange={handleSelectUF} name="" id="">
+                <option disabled value="0">
+                  Selecione o Estado (UF)
+                </option>
+                {ufs.map((uf) => (
+                  <option key={uf.id} value={uf.sigla}>
+                    {uf.nome} ({uf.sigla})
+                  </option>
+                ))}
               </select>
             </div>
 
             <div className="col col-5">
               <label htmlFor="endereco">Cidade</label>
-              <select name="" id="">
+              <select disabled={!municipios.length} defaultValue="0" name="" id="">
                 <option value="0">Selecione a Cidade</option>
+                {municipios.map((municipio) => (
+                  <option key={municipio.id} value={municipio.nome}>
+                    {municipio.nome}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -79,30 +120,12 @@ const CreatePoint: React.FC = () => {
           </div>
 
           <ul className="point-items">
-            <li>
-              <img src="http://192.168.100.53:3003/uploads/lampadas.svg" alt="lampada" />
-              <span>Lampada</span>
-            </li>
-            <li>
-              <img src="http://192.168.100.53:3003/uploads/lampadas.svg" alt="lampada" />
-              <span>Lampada</span>
-            </li>
-            <li>
-              <img src="http://192.168.100.53:3003/uploads/lampadas.svg" alt="lampada" />
-              <span>Lampada</span>
-            </li>
-            <li>
-              <img src="http://192.168.100.53:3003/uploads/lampadas.svg" alt="lampada" />
-              <span>Lampada</span>
-            </li>
-            <li>
-              <img src="http://192.168.100.53:3003/uploads/lampadas.svg" alt="lampada" />
-              <span>Lampada</span>
-            </li>
-            <li>
-              <img src="http://192.168.100.53:3003/uploads/lampadas.svg" alt="lampada" />
-              <span>Lampada</span>
-            </li>
+            {items.map((item) => (
+              <li key={item.id}>
+                <img src={item.url} alt={item.title} />
+                <span>{item.title}</span>
+              </li>
+            ))}
           </ul>
         </fieldset>
       </form>
