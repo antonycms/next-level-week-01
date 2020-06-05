@@ -1,5 +1,5 @@
 interface IItem {
-  id?: number;
+  id: number;
   image: string;
   title: string;
   url?: string;

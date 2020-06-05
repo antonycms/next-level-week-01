@@ -39,6 +39,7 @@
   background-color: white;
   border-radius: 8px;
   padding: 3%;
+  margin-bottom: 30px;
 }
 
 #create-container form h2 {
@@ -119,7 +120,7 @@
   margin: 5px auto;
   background-color: #F0F0F5;
   height: 200px;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .point-items li span {
@@ -129,11 +130,28 @@
   font-size: 15px !important;
 }
 
+.point-items li.selected{
+  background-color: rgba(129, 231, 175, 0.432);
+  border: 2px solid #34CB79;
+}
+
 .leaflet-container {
   width: 100% !important;
   height: 350px !important;
   border-radius: 8px !important;
   margin-bottom: 24px !important;
+}
+
+.btn-create {
+  margin-top: 20px;
+  background-color: #34CB79;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0 10px;
+  height: 45px;
+  border-radius: 5px;
+  border: 2px solid rgb(38, 196, 109);
 }
 
 .col-10{
