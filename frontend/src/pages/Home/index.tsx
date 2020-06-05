@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FiSearch, FiLogIn } from "react-icons/fi";
 
 import "./styles.css";
@@ -11,10 +12,10 @@ const pages: React.FC = () => {
       <header id="home-header">
         <img src={logo} alt="logo Ecoleta" />
 
-        <a className="link" href="/">
+        <Link className="link" to="/create-point">
           <FiLogIn />
           <p>Cadastre um ponto de coleta</p>
-        </a>
+        </Link>
       </header>
 
       <div id="home-content">
@@ -24,12 +25,12 @@ const pages: React.FC = () => {
             Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente
           </p>
 
-          <a className="link btn" href="/">
+          <Link className="link btn" to="/">
             <div className="icon">
-            <FiSearch  />
+              <FiSearch />
             </div>
             <p>Pesquisar pontos de coleta</p>
-          </a>
+          </Link>
         </div>
         <div id="background-content" />
       </div>
