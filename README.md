@@ -4,7 +4,7 @@
   <img style="border-radius: 8px;" src="./assets/nlw-logo.png"/>
 </div>
 
-<p>
+<p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <img src="https://img.shields.io/badge/npm-%3E%3D6.14.4-blue.svg" />
   <img src="https://img.shields.io/badge/node-%3E%3D12.17.0-blue.svg" />
