@@ -1,10 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { FiSearch, FiLogIn } from "react-icons/fi";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FiSearch, FiLogIn } from 'react-icons/fi';
 
-import "./styles.css";
+import './styles.css';
 
-import logo from "../../assets/logo.svg";
+import logo from '../../assets/logo.svg';
 
 const pages: React.FC = () => {
   return (
@@ -21,9 +21,7 @@ const pages: React.FC = () => {
       <div id="home-content">
         <div id="content-text">
           <strong>Seu marketplace de coleta de resíduos</strong>
-          <p>
-            Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente
-          </p>
+          <p>Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente</p>
 
           <Link className="link btn" to="/">
             <div className="icon">

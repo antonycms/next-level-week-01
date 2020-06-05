@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { FiArrowLeft } from "react-icons/fi";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FiArrowLeft } from 'react-icons/fi';
 
-import "./styles.css";
-import logo from "../../assets/logo.svg";
+import './styles.css';
+import logo from '../../assets/logo.svg';
 
 const CreatePoint: React.FC = () => {
   return (
@@ -29,10 +29,7 @@ const CreatePoint: React.FC = () => {
           <div className="col-container">
             <div className="col col-5">
               <label htmlFor="endereco">Email</label>
-              <input
-                type="email"
-                placeholder="email@email.com"
-              />
+              <input type="email" placeholder="email@email.com" />
             </div>
             <div className="col col-4">
               <label htmlFor="whatsapp">Whatsapp</label>
