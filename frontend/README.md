@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to Next Level Week - Frontend 👋</h1>
+<h1 align="center">Next Level Week - Frontend WEB👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <img src="https://img.shields.io/badge/npm-%3E%3D6.14.4-blue.svg" />
@@ -14,18 +14,18 @@
   </a>
 </p>
 
-> Projeto desenvolvido durante o evento Next Level Week da Rocketseat
+> Projeto Ecoleta, desenvolvido durante o evento Next Level Week da Rocketseat
 
 <img style="border-radius: 4px;" src="../assets/printhome2.png"/>
 
-### 🏠 [Homepage](https://github.com/kefranabg/readme-md-generator#readme)
+### 🏠 [Homepage](https://github.com/antonycms/next-level-week-01)
 
-## Prerequisites
+## Requisitos
 
 - npm >=6.14.4
 - node >=12.17.0
 
-## Technologies
+## Tecnologias
 - React
 - Axios
 - Leaflet
@@ -36,22 +36,22 @@
 - Editorconfig
 
 #
-## Install
+## Instalação
 
 ```sh
 yarn install
 ```
-OR
+ou
 ```sh
 npm install
 ```
 #
-## Usage
+## Rodando o projeto
 
 ```sh
 yarn start
 ```
-Or
+ou
 ```sh
 npm start
 ```
@@ -63,14 +63,14 @@ npm start
 * GitHub: [@antonycms](https://github.com/antonycms)
 
 #
-## Show your support
+## Deixe seu suporte
 
-Give a ⭐️ if this project helped you!
+Deixe uma ⭐️ se esse projeto ajudou você!
 
-## 📝 License
+## 📝 Licença
 
 Copyright © 2020 [Antony Santos](https://github.com/antonycms).<br />
-This project is [MIT](https://github.com/kefranabg/readme-md-generator/blob/master/LICENSE) licensed.
+Este projeto possui licença [MIT](https://github.com/antonycms/next-level-week-01/blob/master/LICENSE).
 
 ***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+_Este README foi gerado utilizando [readme-md-generator](https://github.com/kefranabg/readme-md-generator) ❤️_

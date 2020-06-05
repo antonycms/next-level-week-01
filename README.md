@@ -1,4 +1,10 @@
 <h1 align="center">NextLevelWeek</h1>
+
+<div style="widht: 100%; display: flex; justify-content: center;">
+<img style="border-radius: 8px;" src="./assets/nlw-logo.png"/>
+</div>
+
+
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <img src="https://img.shields.io/badge/npm-%3E%3D6.14.4-blue.svg" />
@@ -14,16 +20,23 @@
   </a>
 </p>
 
-> Projeto realizado durante o evento Next Level Week da Rocketseat
+> Projeto Ecoleta, realizado durante o evento Next Level Week da Rocketseat
 
 ### 🏠 [Homepage](https://github.com/antonycms/next-level-week-01)
 
-## Prerequisites
+## Projeto
+<div style="widht: 100%; display: flex; justify-content: center; background-color: white;padding:20px ; border-radius: 8px">
+<img style="border-radius: 8px;" src="./assets/logo.svg"/>
+</div>
+
+O **Ecoleta** é uma aplicacao desenvolvida com o intuito de criar uma conexão entre as empresas/entidades responsaveis pela coleta de residuos e as pessoas.
+
+## Requisitos
 
 - npm >=6.14.4
 - node >=12.17.0
 
-## Project Directories
+## Diretorios do projeto
  -  `backend` (aplication server)
  -  `frontend` (web aplication)
  -  `mobile` (mobile aplication)
@@ -33,14 +46,14 @@
 
 * Github: [@antonycms](https://github.com/antonycms)
 
-## Show your support
+## Deixe seu suporte
 
-Give a ⭐️ if this project helped you!
+Deixe uma ⭐️ se esse projeto ajudou você!
 
-## 📝 License
+## 📝 Licença
 
 Copyright © 2020 [Antony Santos](https://github.com/antonycms).<br />
-This project is [MIT](https://github.com/antonycms/next-level-week-01/blob/master/LICENSE) licensed.
+Este projeto possui licença [MIT](https://github.com/antonycms/next-level-week-01/blob/master/LICENSE).
 
 ***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+_Este README foi gerado utilizando [readme-md-generator](https://github.com/kefranabg/readme-md-generator) ❤️_
