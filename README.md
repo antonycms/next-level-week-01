@@ -20,8 +20,8 @@
 
 ## Prerequisites
 
-- npm >= v6.14.4
-- node >=v12.17.0
+- npm >=6.14.4
+- node >=12.17.0
 
 ## Project Directories
  -  `backend` (aplication server)
