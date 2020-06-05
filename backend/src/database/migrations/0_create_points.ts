@@ -7,7 +7,7 @@ export async function up(knex: Knex): Promise<void> {
     tablePoints.string('name').notNullable();
     tablePoints.string('email').notNullable();
     tablePoints.string('whatsapp').notNullable();
-    tablePoints.decimal('lagitude').notNullable();
+    tablePoints.decimal('latitude').notNullable();
     tablePoints.decimal('longitude').notNullable();
     tablePoints.string('city').notNullable();
     tablePoints.string('uf', 2).notNullable();
