@@ -24,9 +24,7 @@
 ### 🏠 [Homepage](https://github.com/antonycms/next-level-week-01)
 
 ## Projeto
-<div style="widht: 100%; display: flex; justify-content: center; background-color: white;padding:20px ; border-radius: 8px">
-<img style="border-radius: 8px;" src="./assets/logo.svg"/>
-</div>
+<img style="border-radius: 8px;" src="./assets/capa.svg"/>
 
 O **Ecoleta** é uma aplicacao desenvolvida com o intuito de criar uma conexão entre as empresas/entidades responsaveis pela coleta de residuos e as pessoas.
 
@@ -40,7 +38,35 @@ O **Ecoleta** é uma aplicacao desenvolvida com o intuito de criar uma conexão 
  -  `frontend` (web aplication)
  -  `mobile` (mobile aplication)
 
+## Tecnologias e libs utilizadas
+* Backend
+  - `Nodejs`
+  - `Yup`
+  - `Knex`
+  - `Express`
+  - `Cors`
+  - `Typescrip`
+* Frontend Web 
+  - `ReactJS`
+  - `React Router DOM`
+  - `Axios`
+  - `Leaflet`
+  - `Typescrip`
+* Mobile
+  - `React Native`
+  - `React Navigation`
+  - `React Native Maps`
+  - `Expo`
+  - `Typescript`
+
+## Lints
+- `ESLint`
+- `Prettier`
+- `Editorconfig`
+
+
 #
+
 👤 **Antony Santos**
 
 * Github: [@antonycms](https://github.com/antonycms)
