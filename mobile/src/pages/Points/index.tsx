@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, Alert } from 'react-native';
 import Constants from 'expo-constants';
 import { Feather as Icon } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import Map, { Marker } from 'react-native-maps';
 import { SvgUri } from 'react-native-svg';
 import baseApi from '../../services/baseApi';
@@ -25,8 +25,16 @@ interface IPoint {
   uf: 'AL';
 }
 
+interface IAddress {
+  uf: string;
+  city: string;
+}
+
 const Points: React.FC = () => {
   const navigation = useNavigation();
+  const route = useRoute();
+
+  const address = route.params as IAddress;
 
   const [items, setItems] = useState<IItem[]>([]);
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
@@ -62,15 +70,19 @@ const Points: React.FC = () => {
     baseApi
       .get('/points', {
         params: {
-          uf: 'AL',
-          city: 'Maceio',
-          items: [1, 2],
+          uf: address.uf,
+          city: address.city,
+          items: selectedItems,
         },
       })
       .then((response) => {
         setPoints(response.data);
       });
-  }, []);
+  }, [selectedItems]);
+
+  if (!points) {
+    return <View />;
+  }
 
   function handleToHomePage() {
     navigation.goBack();
@@ -103,7 +115,11 @@ const Points: React.FC = () => {
         <Text style={styles.description}>Encontre no mapa um ponto de coleta.</Text>
 
         <View style={styles.mapContainer}>
-          {initialLocation[0] !== 0 && (
+          {initialLocation[0] === 0 ? (
+            <View style={styles.mapLoading}>
+              <Text>Carregando Mapa...</Text>
+            </View>
+          ) : (
             <Map
               initialRegion={{
                 latitude: -9.7946377,
@@ -188,6 +204,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
     marginTop: 16,
+  },
+
+  mapLoading: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   map: {

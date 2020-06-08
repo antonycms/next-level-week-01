@@ -24,7 +24,7 @@
 ### 🏠 [Homepage](https://github.com/antonycms/next-level-week-01)
 
 ## Projeto
-<img style="border-radius: 8px;" src="./assets/capa.svg"/>
+<img style="border-radius: 8px;width:100%;" src="./assets/capa.svg"/>
 
 O **Ecoleta** é uma aplicacao desenvolvida com o intuito de criar uma conexão entre as empresas/entidades responsaveis pela coleta de residuos e as pessoas.
 

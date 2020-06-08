@@ -1,17 +1,70 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Feather as Icon } from '@expo/vector-icons';
-import { View, Image, Text, StyleSheet, ImageBackground } from 'react-native';
+import { View, Image, Text, StyleSheet, ImageBackground, Alert } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import RNPickerSelect from 'react-native-picker-select';
+import * as IBGEApi from '../../services/IBGEApi';
 
 import logo from '../../assets/logo.png';
 import background from '../../assets/home-background.png';
 
+interface ISelectedAdress {
+  uf: string;
+  city: string;
+}
+
+interface ISelect {
+  label: string;
+  value: any;
+}
+
 const Home: React.FC = () => {
   const navigation = useNavigation();
 
+  const [ufs, setUfs] = useState<ISelect[]>([]);
+  const [citys, setCitys] = useState<ISelect[]>([]);
+
+  const [selectedAdressData, setSelectedAdressData] = useState<ISelectedAdress>({
+    city: '',
+    uf: '',
+  });
+
+  useEffect(() => {
+    IBGEApi.getUFs().then((ResponseUfs) => {
+      const ufsSerialized = ResponseUfs.map((uf) => ({
+        label: uf.sigla,
+        value: uf.sigla,
+      })).sort((a, b) => (a.label < b.label ? -1 : a.label > b.label ? 1 : 0)); // ordena pelo alfabeto
+
+      setUfs([...ufsSerialized]);
+    });
+  }, []);
+
   function handleNavigationToPoints() {
-    navigation.navigate('Points');
+    if (!selectedAdressData.uf || !selectedAdressData.city) {
+      return Alert.alert('Ops', 'Selecione uma UF e uma Cidade');
+    }
+    navigation.navigate('Points', selectedAdressData);
+  }
+
+  function handleSetSelectData({ field, value }: { field: 'uf' | 'city'; value: string }) {
+    if (field === 'uf') {
+      IBGEApi.getMunicipios(value).then((responseCitys) => {
+        const citySerialized = responseCitys.map((city) => ({
+          value: city.nome,
+          label: city.nome,
+        }));
+
+        setCitys(citySerialized);
+      });
+    }
+
+    setSelectedAdressData({ ...selectedAdressData, [field]: value });
+  }
+
+  if (!ufs.length) {
+    return null;
   }
 
   return (
@@ -26,7 +79,45 @@ const Home: React.FC = () => {
       <View style={styles.main}>
         <Image source={logo} />
         <Text style={styles.title}>Seu marketplace de coleta de residuos.</Text>
-        <Text style={styles.description}>Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente.</Text>
+        <Text style={styles.description}>
+          Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente.
+        </Text>
+      </View>
+
+      <View>
+        <RNPickerSelect
+          style={{
+            inputAndroid: { ...styles.input },
+            inputIOS: { ...styles.input },
+          }}
+          useNativeAndroidPickerStyle={false}
+          key="selectUF"
+          placeholder={{ label: 'UF', value: null, color: '#D0D0D0' }}
+          onValueChange={(uf) => handleSetSelectData({ value: uf, field: 'uf' })}
+          items={ufs}
+        />
+
+        <RNPickerSelect
+          key="selectCity"
+          style={{
+            inputAndroid: { ...styles.input },
+            inputIOS: { ...styles.input },
+            viewContainer: { height: 40 },
+          }}
+          value={selectedAdressData.city ? selectedAdressData.city : ''}
+          onValueChange={(city) => handleSetSelectData({ value: city, field: 'city' })}
+          useNativeAndroidPickerStyle={false}
+          disabled={!selectedAdressData.uf}
+          placeholder={{ label: 'Cidade', value: null, color: '#D0D0D0' }}
+          onOpen={
+            !selectedAdressData.uf
+              ? () => Alert.alert('UF não selecionada!', 'Selecione uma UF!')
+              : () => {
+                  /**/
+                }
+          }
+          items={citys}
+        />
       </View>
 
       <View style={styles.footer}>
