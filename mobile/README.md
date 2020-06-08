@@ -16,10 +16,9 @@
 
 > Projeto Ecoleta, desenvolvido durante o evento Next Level Week da Rocketseat
 
-<div style="display: flex;">
-  <img style="width: 50%; height: 500px;" src="../assets/mobile-print-1.jpg"/>
-  <img style="width: 50%; height: 500px;" src="../assets/mobile-print-2.jpg"/>
-</div>
+Home           |  Point/Detail
+:-------------------------:|:-------------------------:
+![](../assets/mobile-print-1.jpg)  |  ![](../assets/mobile-print-2.jpg)
 
 ### 🏠 [Homepage](https://github.com/antonycms/next-level-week-01)
 
